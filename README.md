@@ -1,2 +1,2 @@
 # Customer Churn prediction
-	This example is from [Predicting Customer Churn with Amazon Machine Learning](https://aws.amazon.com/tw/blogs/ai/predicting-customer-churn-with-amazon-machine-learning/), and I try to use deep learning MLP model to predict it.
+This example is from [Predicting Customer Churn with Amazon Machine Learning](https://aws.amazon.com/tw/blogs/ai/predicting-customer-churn-with-amazon-machine-learning/), and I try to use deep learning MLP model to predict it.
