@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[70]:
+# In[89]:
 
 import numpy as np
 import pandas as pd
@@ -57,19 +57,22 @@ testFeatures, testLabel = preprocess_data(testDf)
 #      'test:', len(testDf))
 
 model = Sequential()
-model.add(Dense(units=80, input_dim=len(customerData.columns)-1, kernel_initializer='normal', activation='relu'))
-model.add(Dropout(0.1))
+model.add(Dense(units=120, input_dim=len(customerData.columns)-1, kernel_initializer='normal', activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(units=60, kernel_initializer='normal', activation='relu'))
+model.add(Dropout(0.5))
 model.add(Dense(units=40, kernel_initializer='normal', activation='relu'))
-model.add(Dropout(0.1))
-model.add(Dense(units=20, kernel_initializer='normal', activation='relu'))
 model.add(Dense(units=2, kernel_initializer='normal', activation='softmax'))
 print(model.summary())
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-trainHistory = model.fit(x=trainingFeatures, y=trainingLabel, validation_split=0.1, epochs=300, batch_size=100, verbose=2)
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+trainHistory = model.fit(x=trainingFeatures, y=trainingLabel, validation_split=0.1, epochs=200, batch_size=100, verbose=2)
 show_train_history(trainHistory, 'acc', 'val_acc')
 
 scores = model.evaluate(x=testFeatures, y=testLabel)
 print(scores[1])
 
+testData = load_data_from_csv("test_data.txt")
+testFeatures2, testLabel2 = preprocess_data(testData)
+print(model.predict_classes(testFeatures2))
 
 
